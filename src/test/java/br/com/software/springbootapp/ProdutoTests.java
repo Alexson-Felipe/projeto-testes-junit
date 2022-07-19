@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -93,6 +94,17 @@ public class ProdutoTests {
         var produtoAlterado = lista.stream().filter(p -> p.getCodigoBarra().equals(CODIGO_BARRA)).findFirst();
 
         assertTrue(produtoAlterado.get().getNome().equals("Rexona Dove") && produtoAlterado.get().getEstoque().equals(25));
+    }
+
+    @Test
+    @DisplayName("Testa comparação entre produtos")
+    @Order(4)
+    public void comparaProdutoTest() {
+
+        var model1 = new ProdutoModel(1L,"Rexona", "Desodorante antitranspirante", CODIGO_BARRA, 30);
+        var model2 = new ProdutoModel(1L,"Rexona", "Desodorante antitranspirante", CODIGO_BARRA, 30);
+
+        assertTrue(model2.getId().equals(model1.getId()));
     }
 
 }
